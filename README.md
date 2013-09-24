@@ -16,7 +16,7 @@ The utility wraps a single call request animation frame in a promise that is res
 Add `coAnimate` to your apps module dependancy list then use it as a service
 
 ```javascript
-    coAnimate().then(function() {
+    $animation().then(function() {
         // animate here
     });
 ```
@@ -25,7 +25,7 @@ or in the middle of a promise chain
 
 ```javascript
     $http.get(asset)
-        .then(coAnimate())
+        .then($animation())
         .then(function() {
             // animate here
         });

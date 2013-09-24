@@ -17,7 +17,7 @@
     'use strict';
 
     angular.module('coAnimate', []).
-        factory('coAnimate', ['$window', '$q', function ($window, $q) {
+        factory('$animation', ['$window', '$q', function ($window, $q) {
             var animating,
                 callback = function () {
                     animating.resolve(true);
