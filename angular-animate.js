@@ -46,9 +46,12 @@
                     };
 
                 return function (update) {
+                    var result;
                     update = update || apply;
-                    update();
-                    if (idle) {
+                    result = update();
+
+                    // Don't animate if the apply function returns false
+                    if (idle === true && result !== false) {
                         idle = false;
                         $nextFrame().then(callback);
                     }
