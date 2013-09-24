@@ -1,4 +1,4 @@
-# requestAnimationFrame polyfill with optional AngularJS helper
+# requestAnimationFrame polyfill
 
 Based on code from https://gist.github.com/paulirish/1579671
 
