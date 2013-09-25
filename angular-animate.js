@@ -37,7 +37,7 @@
         }]).
 
         // Custom animations with updateable settings
-        factory('$animation', ['$window', '$q', '$nextFrame', function ($window, $q, $nextFrame) {
+        factory('$animation', ['$nextFrame', function ($nextFrame) {
             return function (apply, compute) {
                 var idle = true,
                     callback = function () {

@@ -14,7 +14,7 @@
 **/
 
 
-(function(window) {
+(function (window) {
     'use strict';
 
     var lastTime = 0,
@@ -33,13 +33,13 @@
         // Check if standard partially supported
         if (window.requestAnimationFrame === undefined) {
             // No support, emulate standard
-            window.requestAnimationFrame = function(callback) {
+            window.requestAnimationFrame = function (callback) {
                 var now = new Date().getTime(),
                     // +16 ~ 60fps, +32 ~ 31fps
                     // Went with 30fps for older slower browsers / devcie support
                     nextTime = Math.max(lastTime + 32, now);
 
-                return window.setTimeout(function() { callback(lastTime = nextTime); }, nextTime - now);
+                return window.setTimeout(function () { callback(lastTime = nextTime); }, nextTime - now);
             };
 
             window.cancelAnimationFrame = window.clearTimeout;
@@ -48,13 +48,13 @@
             vendors = window.requestAnimationFrame;
             lastTime = {};
 
-            window.requestAnimationFrame = function(callback) {
+            window.requestAnimationFrame = function (callback) {
                 var id = x; // Generate the id (x is initialized in the for loop above)
                 x += 1;
                 lastTime[id] = callback;
 
                 // Call the vendors requestAnimationFrame implementation
-                vendors(function(timestamp) {
+                vendors(function (timestamp) {
                     if (lastTime.hasOwnProperty(id)) {
                         var error;
                         try {
@@ -72,7 +72,7 @@
                 return id;
             };
 
-            window.cancelAnimationFrame = function(id) {
+            window.cancelAnimationFrame = function (id) {
                 delete lastTime[id];
             };
         }
