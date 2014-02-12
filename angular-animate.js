@@ -43,19 +43,24 @@
                     callback = function () {
                         idle = true;
                         compute();
+                    },
+                    animate = function (update) {
+                        var result;
+                        update = update || apply;
+                        result = update();
+
+                        // Don't animate if the apply function returns false
+                        if (idle === true && result !== false) {
+                            idle = false;
+                            $nextFrame().then(callback);
+                        }
                     };
 
-                return function (update) {
-                    var result;
-                    update = update || apply;
-                    result = update();
-
-                    // Don't animate if the apply function returns false
-                    if (idle === true && result !== false) {
-                        idle = false;
-                        $nextFrame().then(callback);
-                    }
+                animate.is_idle = function () {
+                    return idle;
                 };
+
+                return animate;
             };
         }]);
 
