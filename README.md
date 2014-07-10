@@ -3,7 +3,7 @@
 Based on code from https://gist.github.com/paulirish/1579671
 
 1. Open bower.json
-2. Add `"easy-animate": "~1.2.0"` to your dependency list
+2. Add `"easy-animate": "~1.3.0"` to your dependency list
 3. Run `bower install`
 4. In your application you can now add:
    * `<script src="components/easy-animate/requestAnimationFrame.js"></script>`
