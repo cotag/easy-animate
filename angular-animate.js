@@ -39,15 +39,16 @@
         // Custom animations with updateable settings
         factory('$animation', ['$nextFrame', function ($nextFrame) {
             return function (apply, compute) {
-                var idle = true,
+                var scratch = {},
+                    idle = true,
                     callback = function () {
-                        idle = true;
-                        compute();
+                        if (idle === false) {
+                            idle = true;
+                            compute.call(scratch);
+                        }
                     },
-                    animate = function (update) {
-                        var result;
-                        update = update || apply;
-                        result = update();
+                    animate = function () {
+                        var result = apply.apply(scratch, arguments);
 
                         // Don't animate if the apply function returns false
                         if (idle === true && result !== false) {
@@ -58,6 +59,17 @@
 
                 animate.is_idle = function () {
                     return idle;
+                };
+                
+                animate.refresh = function () {
+                    if (idle === true) {
+                        idle = false;
+                        $nextFrame().then(callback);
+                    }
+                };
+                
+                animate.cancel = function () {
+                    idle = true;
                 };
 
                 return animate;
