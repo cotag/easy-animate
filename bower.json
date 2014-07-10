@@ -1,6 +1,6 @@
 {
   "name": "easy-animate",
   "version": "1.3.0",
-  "main": ["requestAnimationFrame.js", "angular-animate.js"],
-  "description": "Request animation frame polyfil with optional AngularJS utility"
+  "main": ["angular-animate.js"],
+  "description": "AngularJS animation utility with optional AnimationFrame polyfill"
 }
