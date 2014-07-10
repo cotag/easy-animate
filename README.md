@@ -34,18 +34,16 @@ or in the middle of a promise chain
 and when you want to animate based on data that may be updating multiple times per frame
 
 ```javascript
-    var position = 1,
-        text = 'often updated',
-        runAnimation = $animation(function apply() {
-            position = newPos();
-            text = currentText();
+    var runAnimation = $animation(function apply(position) {
+            this.position = position;
+            this.text = currentText();    // For example
         }, function compute() {
-            buildScene(position, text);
+            buildScene(this.position, this.text);
         });
 
-    $document.bind('scroll', function() {
+    $document.bind('scroll', function(e) {
         // Will call apply every time scroll is triggered
         // Will only call compute on animation frames
-        runAnimation();
+        runAnimation(e.pos_x);  // also for example
     });
 ```
